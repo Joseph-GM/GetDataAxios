@@ -31,7 +31,7 @@ import axios from 'axios'
 import Geolocation from '@react-native-community/geolocation';
 
 function App() {
-  const SK_API_KEY = "l7xxb0267913faf84de39d5c80d951a60836"
+  const SK_API_KEY = "SK_API_KEY"
   const [clatitude, setClatitude] = useState(37.512992);
   const [clongitude, setClongitude] = useState(126.7063177);
   const [address, setAddress] = useState({});
@@ -113,35 +113,37 @@ function App() {
 
     Geolocation.getCurrentPosition(
       position => {
-        /* setClatitude(position.coords.latitude);
-        setClongitude(position.coords.longitude); */
         console.log(position.coords.longitude);
         console.log(position.coords.latitude);
         setClatitude(position.coords.latitude);
         setClongitude(position.coords.longitude);
-      }
-      /*axios
+        axios
         .all([firstAddress, secondCSData])
         .then(
           axios.spread((...response) => {
             const first = response[0].data;
             const second = response[1].data;
-            console.log("ADDRESS*************************")
-            console.log(JSON.stringify(first));
-            console.log("CSInfo*************************")
-            console.log(JSON.stringify(second));
+//            console.log("ADDRESS*************************")
+//            console.log(JSON.stringify(first));
+            setAddress(first);
+            setCSData(second);
+
+//            console.log("CSInfo*************************")
+//            console.log(JSON.stringify(second));
           })
         )
         .catch(erros => {
           console.log("error")
-        }) */
-    );
+        })
+      });
   }, []);
   
-  return (
+  return ( 
     <View>
-      {console.log("in Return!!!!")}
+      {console.log("in Return CSDATA!!!!")}
+      {console.log(csData)}
       {console.log("in Return Address!!!")}
+      {console.log(address)}
       <Text>This is Test</Text>
       {/* <Text>{posts.addressInfo.fullAddress}</Text> */}
     </View>
